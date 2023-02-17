@@ -1,0 +1,12 @@
+const express=require("express");
+const app=express();
+const cookieParser=require("cookie-parser");
+const errorMiddleware=require("./middleware/errors");
+app.use(express.json());
+app.use(cookieParser());
+const user=require("./routes/userRoute");
+const post=require("./routes/postRoute");
+app.use("/api/v1",user);
+app.use("/api/v1",post);
+app.use(errorMiddleware);
+module.exports=app;
