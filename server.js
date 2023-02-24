@@ -10,9 +10,9 @@ process.on("uncaughtException",err=>{
 dotenv.config({path:"config/config.env"});
 connect();
 
-const server=app.listen(4000,()=>
+const server=app.listen(PORT,()=>
 {
-    console.log("Port running");
+    console.log(PORT);
 })
 //Unhandled Promise Rejection
 process.on("unhandledRejection",err=>{
