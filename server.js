@@ -10,7 +10,7 @@ process.on("uncaughtException",err=>{
 dotenv.config({path:"config/config.env"});
 connect();
 
-const server=app.listen(PORT,()=>
+const server=app.listen(4000,()=>
 {
     console.log("Port running");
 })

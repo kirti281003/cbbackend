@@ -3,7 +3,7 @@ const postSchema=new mongoose.Schema({
     user:{
         type:mongoose.Schema.ObjectId,
         ref:"User",
-        required:"true"
+        required:true
     },
     heading:{
         type:String,
@@ -24,6 +24,23 @@ const postSchema=new mongoose.Schema({
     email:{
         type:String,
         required:true
-    }
+    },
+    deadline:{
+        type:Date,
+        required:true
+    },
+    skills:{
+        type:String
+    },
+    postedOn:{
+        type:Date,
+        default:Date.now()
+    },
+    steps:{
+        type:String
+    },
+   image:{
+    type:String
+   }
 })
 module.exports=mongoose.model("Post",postSchema);
