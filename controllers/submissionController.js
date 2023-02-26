@@ -22,7 +22,9 @@ exports.setSubmission=catchAsyncErrors(async(req,res,next)=>{
             user:req.user._id,
             username:req.user.username,
             post:req.params.id,
-            links:links
+            links:JSON.parse(links),
+            postname:req.params.name
+
 
         }
     )
@@ -83,7 +85,25 @@ exports.submissions=catchAsyncErrors(async(req,res,next)=>{
 
 exports.submissionAccepted=catchAsyncErrors(async(req,res,next)=>{
     const sub=await Submission.findById(req.params.id);
-    sub.accepted=true;
+    const message=req.params.message;
+    if(message==="accept")
+    {
+        sub.accepted=true;
+    }
+    else{
+        sub.accepted=false;
+    }
+   
+    await sub.save({validateBeforeSave:false});
+    res.status(200).json({
+        success:true,
+        message:"Accept Invitation Send"
+    })
+})
+
+exports.submissionRejected=catchAsyncErrors(async(req,res,next)=>{
+    const sub=await Submission.findById(req.params.id);
+    sub.accepted=false;
     await sub.save({validateBeforeSave:false});
     res.status(200).json({
         success:true,
@@ -92,17 +112,17 @@ exports.submissionAccepted=catchAsyncErrors(async(req,res,next)=>{
 })
 
 exports.getAccepted=catchAsyncErrors(async(req,res,next)=>{
-    const sub=await Submission.find({user:req.user._id});
-    const subs=[];
-    sub.forEach(rev=>{
+    const subs=await Submission.find({user:req.user._id});
+    const sub=[];
+    subs.forEach(rev=>{
         if(rev.accepted==="true")
-        {subs.push(rev);
+        {sub.push(rev);
 
         }
     });
     res.status(200).json({
         success:true,
-        subs
+        sub
     })
 })
 

@@ -5,6 +5,12 @@ const subSchema=new mongoose.Schema({
         ref:"Post",
         required:true
     },
+    postname:{
+        type:String,
+        ref:"Post",
+        required:true
+
+    },
     user:{
         type:mongoose.Schema.ObjectId,
         ref:"User",
@@ -30,10 +36,15 @@ const subSchema=new mongoose.Schema({
             type:String,
         }
     }],
+  
     accepted:{
         type:String,
-        default:false,
+        default:"waiting",
         required:true
+    },
+    date:{
+        type:Date,
+        default:Date.now()
     }
 })
 module.exports=mongoose.model("Submission",subSchema);

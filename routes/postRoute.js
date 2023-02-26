@@ -9,10 +9,10 @@ router.route("/posts").get(isAuthenticated,getPosts);
 router.route("/posts/user").get(isAuthenticated,getUserPost);
 router.route("/post/:id").get(isAuthenticated,post);
 router.route("/post/delete/:id").get(isAuthenticated,deletePost);
-router.route("/setSubmission/:id").post(isAuthenticated,setSubmission);
+router.route("/setSubmission/:id/:name").post(isAuthenticated,setSubmission);
 router.route("/getSubmission/:id").get(isAuthenticated,getSubmission);
 router.route("/submissions/:id").get(isAuthenticated,submissions);
-router.route("/getSubmission/:id").put(isAuthenticated,submissionAccepted);
+router.route("/getSubmission/:id/:message").put(isAuthenticated,submissionAccepted);
 router.route("/accepted/submissions").get(isAuthenticated,getAccepted);
 router.route("/user/submissions").get(isAuthenticated,userSubmissions);
 

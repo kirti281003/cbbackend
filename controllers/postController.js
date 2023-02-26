@@ -9,8 +9,9 @@ cloudinary.config({
     api_secret:"SzqyhWymF0CoH2bbDut25UzhTPQ"
 })
 exports.createPost=catchAsyncErrors(async(req,res,next)=>{
-    console.log(skills);
+    
     const{heading,category,body,skills,deadline,steps}=req.body;
+    console.log(skills);
    
     if(req.files)
     {
