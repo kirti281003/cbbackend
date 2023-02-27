@@ -133,3 +133,17 @@ exports.userSubmissions=catchAsyncErrors(async(req,res,next)=>{
         sub
     })
 })
+
+exports.deleteSub=catchAsyncErrors(async(req,res,next)=>
+{
+    const sub=await Submission.findById(req.params.id);
+    if(!sub)
+    {
+        return next(new ErrorHandler("No Submission Found",404))
+    }
+    await sub.remove();
+    res.status(200).json({
+        success:true,
+        message:"Submission Deleted"
+    })
+})

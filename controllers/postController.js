@@ -12,6 +12,7 @@ exports.createPost=catchAsyncErrors(async(req,res,next)=>{
     
     const{heading,category,body,skills,deadline,steps}=req.body;
     console.log(skills);
+    
    
     if(req.files)
     {
