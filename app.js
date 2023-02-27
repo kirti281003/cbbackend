@@ -18,4 +18,9 @@ app.use("/api/v1",user);
 app.use("/api/v1",post);
 // app.use("/api/v1",sub);
 app.use(errorMiddleware);
+app.use(function (request, response, next) {
+    response.header("Access-Control-Allow-Origin", "*");
+    response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
 module.exports=app;
