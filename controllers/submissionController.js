@@ -15,6 +15,10 @@ exports.setSubmission=catchAsyncErrors(async(req,res,next)=>{
     
     cloudinary.uploader.upload(file.tempFilePath,async(err,result)=>{
     const{body,links,name}=req.body;
+    if(!body)
+    {
+        next(new ErrorHandler("Pitch is required",400));
+    }
     const sub=await Submission.create(
         {
             body:body,
@@ -39,13 +43,17 @@ exports.setSubmission=catchAsyncErrors(async(req,res,next)=>{
 }
     else{
         const{body,links,name}=req.body;
+        if(!body)
+        {
+            next(new ErrorHandler("Pitch is required",400));
+        }
         const sub=await Submission.create(
             {
                 body:body,
                 user:req.user._id,
                 username:req.user.username,
                 post:req.params.id,
-                links:links,
+                links:JSON.parse(links),
                 postname:name,
                 name:req.user.name
 
