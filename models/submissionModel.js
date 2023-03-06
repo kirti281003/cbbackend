@@ -20,6 +20,10 @@ const subSchema=new mongoose.Schema({
         type:String,
         required:true
     },
+    name:{
+        type:String,
+        required:true
+    },
     body:{
         type:String,
         required:true

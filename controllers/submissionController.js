@@ -14,7 +14,7 @@ exports.setSubmission=catchAsyncErrors(async(req,res,next)=>{
      const file=req.files.photo;
     
     cloudinary.uploader.upload(file.tempFilePath,async(err,result)=>{
-    const{body,links}=req.body;
+    const{body,links,name}=req.body;
     const sub=await Submission.create(
         {
             body:body,
@@ -23,7 +23,8 @@ exports.setSubmission=catchAsyncErrors(async(req,res,next)=>{
             username:req.user.username,
             post:req.params.id,
             links:JSON.parse(links),
-            postname:req.params.name
+            postname:name,
+            name:req.user.name
 
 
         }
@@ -37,14 +38,16 @@ exports.setSubmission=catchAsyncErrors(async(req,res,next)=>{
     })
 }
     else{
-        const{body,links}=req.body;
+        const{body,links,name}=req.body;
         const sub=await Submission.create(
             {
                 body:body,
                 user:req.user._id,
                 username:req.user.username,
                 post:req.params.id,
-                links:links
+                links:links,
+                postname:name,
+                name:req.user.name
 
     
             }
