@@ -99,10 +99,10 @@ exports.submissionAccepted=catchAsyncErrors(async(req,res,next)=>{
     const message=req.params.message;
     if(message==="accept")
     {
-        sub.accepted=true;
+        sub.accepted="Accepted";
     }
     else{
-        sub.accepted=false;
+        sub.accepted="Rejected";
     }
    
     await sub.save({validateBeforeSave:false});
