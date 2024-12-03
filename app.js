@@ -21,8 +21,10 @@ app.use("/api/v1",post);
 app.use(errorMiddleware);
 app.use(function (request, response, next) {
     response.header("Access-Control-Allow-Origin", "*");
-    response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    response.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+response.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+response.header("Access-Control-Allow-Credentials", true);
     next();
   });
-  app.use(cors);
+  app.use(cors());
 module.exports=app;
