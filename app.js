@@ -20,10 +20,10 @@ app.use("/api/v1",post);
 // app.use("/api/v1",sub);
 app.use(errorMiddleware);
 app.use(function (request, response, next) {
-    response.header("Access-Control-Allow-Origin", "*");
-    response.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-response.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-response.header("Access-Control-Allow-Credentials", true);
+    response.setHeader("Access-Control-Allow-Origin", "*");
+    response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+response.setHeader("Access-Control-Allow-Credentials", true);
     next();
   });
   app.use(cors());
