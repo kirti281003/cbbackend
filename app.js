@@ -22,7 +22,7 @@ app.use(errorMiddleware);
 app.use((req, res, next) => {
     res.setHeader(
       "Access-Control-Allow-Origin",
-      "https://localhost:3000"
+      "http://localhost:3000"
     );
     res.setHeader(
       "Access-Control-Allow-Methods",
@@ -42,7 +42,7 @@ app.use((req, res, next) => {
   app.options("*", (req, res) => {
     console.log("preflight");
     if (
-      req.headers.origin === "https://localhost:3000" &&
+      req.headers.origin === "http://localhost:3000" &&
       allowMethods.includes(req.headers["access-control-request-method"]) &&
       allowHeaders.includes(req.headers["access-control-request-headers"])
     ) {
