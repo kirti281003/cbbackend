@@ -39,5 +39,17 @@ app.use((req, res, next) => {
   
     next();
   });
+  app.options("*", (req, res) => {
+    console.log("preflight");
+    if (
+      req.headers.origin === "https://localhost:3000" &&
+      allowMethods.includes(req.headers["access-control-request-method"]) &&
+      allowHeaders.includes(req.headers["access-control-request-headers"])
+    ) {
+      console.log("pass");
+      return res.status(204).send();
+    } else {
+      console.log("fail");
+    }});
   app.use(cors());
 module.exports=app;
